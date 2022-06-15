@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="brume.h" />
     <ClInclude Include="hud.h" />
+    <ClInclude Include="img.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="jeu.h" />
     <ClInclude Include="joueur.h" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="brume.cpp" />
     <ClCompile Include="hud.cpp" />
+    <ClCompile Include="img.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="jeu.cpp" />
     <ClCompile Include="joueur.cpp" />

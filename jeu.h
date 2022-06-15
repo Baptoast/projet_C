@@ -4,12 +4,13 @@
 #include <iostream>
 #include "input.h"
 #include "sol.h"
+#include "img.h"
 #include "joueur.h"
 #include "materiaux.h"
 #include "hud.h"
 #include <vector>
 #include <SFML/Network.hpp>
-#include <SFML/Graphics.hpp>
+
 
 //Constantes du Programme
 const int SCREEN_SIZE_WEIGHT = 960;
@@ -26,8 +27,13 @@ class Jeu {
 
 	RenderWindow window;
 
-	//Input input;
+	Input input;
 	Event event;
+
+	vector<Joueur> listeDeJoueur;
+	vector<Materiaux> listeDeMateriaux;
+	Sol leSol;
+	Img imageStock;
 	
 
 public:

@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "input.h"
+#include "materiaux.h"
 #include <vector>
 
 
@@ -12,7 +13,7 @@
 using namespace sf;
 using namespace std;
 
-class Perso {
+class Joueur {
 	//recupere les actions du joueur (shift pour aller plus vite)
 	Input inputPerso;
 
@@ -22,9 +23,9 @@ class Perso {
 	struct Pos { int posX, posY; };
 
 	//Texture du personnage (image dans un dossier)
-	Texture perso;
+	Texture texture_joueur;
 	//Sprite du personnage (apparence du personnage en jeu)
-	Sprite sprite_perso;
+	Sprite sprite_joueur;
 	//Liste des directions où peut regarder notre personnage
 	enum Dir { Down, Left, Right, Up };
 	//(x, y) x = colonne d'animation (de 1 à 3) et y = ligne d'animation (choix de la liste juste au dessus)
@@ -42,7 +43,7 @@ class Perso {
 	//Fonction public
 public:
 	//Proto du contructeur
-	Perso(int x, int y, float pvperso, float degatsperso);
+	Joueur(int x, int y);
 
 	//Setter
 	void setInput(Input input);
@@ -55,11 +56,10 @@ public:
 
 	//fontion
 	void loadTexturePerso();
-	void deplacementPerso();
+	void deplacementPerso(vector<Materiaux>& listeDesMateriaux);
 	void animationPerso(int y);
-	void vitesseDeplacementPerso(int vitesse);
-	void controlePerso(RenderWindow& window, int y, bool itemConsommable);
-	void attaque(RenderWindow& window, bool itemConsommable);
+	void vitesseDeplacementPerso(int vitesse, vector<Materiaux>& listeDesMateriaux);
+	void controlePerso(RenderWindow& window, vector<Materiaux>& listeDesMateriaux);
 	float anglePoints(int x1, int y1, int x2, int y2);
 	float anglePointsDegree(int x1, int y1, int x2, int y2);
 
