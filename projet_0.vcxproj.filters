@@ -45,6 +45,9 @@
     <ClInclude Include="img.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="inventaire.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,6 +78,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="img.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="inventaire.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

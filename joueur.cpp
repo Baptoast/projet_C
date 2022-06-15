@@ -1,7 +1,7 @@
 #include "joueur.h"
 
 //Constructeur perso 
-Joueur::Joueur(int x, int y) {
+Joueur::Joueur(int x, int y, Inventaire& inventaireDuJoueur) {
     //attribut la position du joueur à sa génération
     setPosX(x);
     setPosY(y);
@@ -9,6 +9,8 @@ Joueur::Joueur(int x, int y) {
     Vector2i anim(1, Down);
     vitesse = 0;
     updateFPS = true;
+
+    inventaire = inventaireDuJoueur;
 }
 
 //Getter
@@ -134,11 +136,36 @@ void Joueur::animationPerso(int y) {
 //Dessine le perso dans la fenêtre
 void Joueur::controlePerso(RenderWindow& window, vector<Materiaux>& listeDesMateriaux) {
     
-
+    if (inputPerso.GetButton().clicG) {
+        ramasseMateriaux(window,listeDesMateriaux);
+    }
+    else {
+        ramassage = 0;
+    }
     vitesseDeplacementPerso(vitesse, listeDesMateriaux);
     
     animationPerso(0);
+    cout << inventaire.idMateriaux.size() << endl;
     window.draw(sprite_joueur);
+}
+
+void Joueur::ramasseMateriaux(RenderWindow& window, vector<Materiaux>& listeDesMateriaux) {
+    
+    int positionSourisX = laSouris.getPosition().x + getPos().posX - window.getPosition().x-450;
+    int positionSourisY = laSouris.getPosition().y + getPos().posY - window.getPosition().y - 475;
+    for (int i = 0; i < listeDesMateriaux.size(); i++) {
+        if (listeDesMateriaux.at(i).getSprite().getPosition().x <= getPos().posX + 80 && listeDesMateriaux.at(i).getSprite().getPosition().x >= getPos().posX-28 && listeDesMateriaux.at(i).getSprite().getPosition().y <= getPos().posY + 75 && listeDesMateriaux.at(i).getSprite().getPosition().y >= getPos().posY-28) {
+            if (listeDesMateriaux.at(i).getSprite().getGlobalBounds().contains(positionSourisX, positionSourisY)) {
+                ramassage++;
+                if (ramassage >= listeDesMateriaux.at(i).solidite) {
+                    inventaire.idMateriaux.push_back(listeDesMateriaux.at(i).idMateriaux);
+                    listeDesMateriaux.erase(listeDesMateriaux.begin() +  i);
+                    ramassage = 0;
+                }
+                
+            }
+        }
+    }
 }
 
 //gives the angle from point one to point two

@@ -8,6 +8,7 @@
 #include "joueur.h"
 #include "materiaux.h"
 #include "hud.h"
+#include "inventaire.h"
 #include <vector>
 #include <SFML/Network.hpp>
 
@@ -34,6 +35,7 @@ class Jeu {
 	vector<Materiaux> listeDeMateriaux;
 	Sol leSol;
 	Img imageStock;
+	Inventaire inventaire;
 	
 
 public:

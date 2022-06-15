@@ -39,5 +39,16 @@ void Sol::afficheSol(RenderWindow& window, Joueur& leJoueur) {
         sprite_sol.setPosition(sprite_sol.getPosition().x , sprite_sol.getPosition().y - 96);
         niveauY = niveauY - 96;
     }
+
+    //(Autre)
+    //GetPlayerX+50*cos(angleT),GetPlayerY+50*sin(angleT)
+    //angleToPlayer(ObjMove_GetX(bossObj), ObjMove_GetY(bossObj));
+    
+    //CALCUL MAGIQUE DU CERCLE DE L'INFINIIIIIIII
+    //float calcul = (abs(leJoueur.getPos().posX+(255.0 / 6720.0)*abs(leJoueur.getPos().posX)*cos(leJoueur.anglePoints(0,0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs(leJoueur.getPos().posY + (255.0 / 6720.0) * abs(leJoueur.getPos().posY) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))))/ (6720.0 / 255.0);
+    float calcul = (abs((255.0 / 6720.0) * abs(leJoueur.getPos().posX) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs((255.0 / 6720.0) * abs(leJoueur.getPos().posY) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))));
+    
+    sprite_sol.setColor(Color(255 - calcul, 255 - calcul, 255, 255));
+
     window.draw(sprite_sol);
 }

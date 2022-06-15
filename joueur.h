@@ -6,6 +6,7 @@
 #include <iostream>
 #include "input.h"
 #include "materiaux.h"
+#include "inventaire.h"
 #include <vector>
 
 
@@ -16,7 +17,8 @@ using namespace std;
 class Joueur {
 	//recupere les actions du joueur (shift pour aller plus vite)
 	Input inputPerso;
-
+	Mouse laSouris;
+	Inventaire inventaire;
 
 
 	//structure utilisée dans Perso.cpp
@@ -40,10 +42,12 @@ class Joueur {
 	float positionXSourisVue;
 	float positionYSourisVue;
 
+	int ramassage = 0;
+
 	//Fonction public
 public:
 	//Proto du contructeur
-	Joueur(int x, int y);
+	Joueur(int x, int y, Inventaire& inventaireDuJoueur);
 
 	//Setter
 	void setInput(Input input);
@@ -57,6 +61,7 @@ public:
 	//fontion
 	void loadTexturePerso();
 	void deplacementPerso(vector<Materiaux>& listeDesMateriaux);
+	void ramasseMateriaux(RenderWindow& window, vector<Materiaux>& listeDesMateriaux);
 	void animationPerso(int y);
 	void vitesseDeplacementPerso(int vitesse, vector<Materiaux>& listeDesMateriaux);
 	void controlePerso(RenderWindow& window, vector<Materiaux>& listeDesMateriaux);

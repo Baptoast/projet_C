@@ -20,9 +20,11 @@ class Materiaux {
 public:
 	int posX;
 	int posY;
+	int solidite;
+	int idMateriaux;
 
 	//Proto du contructeur
-	Materiaux(int x, int y, Texture* texture);
+	Materiaux(int x, int y, Texture* texture, int id);
 	void afficheMateriaux(RenderWindow& window);
 
 	Sprite getSprite();

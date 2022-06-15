@@ -1,12 +1,19 @@
 #include "jeu.h"
 
 Jeu::Jeu() {
-    
-    
-    listeDeMateriaux.push_back(Materiaux(100, 100, &imageStock.pierre));
-    listeDeMateriaux.push_back(Materiaux(200, 150, &imageStock.fleur2));
+    /*
+Liste ID materiaux :
+1 - Bois
+2 - Pierre
+3 - Fleur1
+4 - Fleur2
+5 - Fleur3
+*/
+    listeDeMateriaux.push_back(Materiaux(100, 100, &imageStock.pierre,2));
+    listeDeMateriaux.push_back(Materiaux(200, 150, &imageStock.fleur2,4));
+    listeDeMateriaux.push_back(Materiaux(-50, -150, &imageStock.fleur3, 5));
 
-    Joueur leJoueurPrincipal = Joueur(0,0);
+    Joueur leJoueurPrincipal = Joueur(0,0, inventaire);
     listeDeJoueur.push_back(leJoueurPrincipal);
     listeDeJoueur.at(0).loadTexturePerso();
 
@@ -45,9 +52,12 @@ void Jeu::bouclePrincipale() {
     for (int i = 0; i < listeDeMateriaux.size(); i++) {
         listeDeMateriaux.at(i).afficheMateriaux(window);
     }
+    //Affiche inventaire
+    inventaire.afficheInventaire(window, listeDeJoueur.at(0).getPos().posX, listeDeJoueur.at(0).getPos().posY);
     //Joueur et vue
     listeDeJoueur.at(0).controlePerso(window,listeDeMateriaux);
     vue.setCenter(listeDeJoueur.at(0).getPos().posX+32, listeDeJoueur.at(0).getPos().posY + 32);
+    
     
 
     window.setView(vue);
