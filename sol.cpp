@@ -22,7 +22,7 @@ void Sol::loadTextureSol()
 }
 
 void Sol::afficheSol(RenderWindow& window, Joueur& leJoueur) {
-    //Deplace le décors de façon à crée l'illusion de l'infini
+    //Deplace le dÃ©cors de faÃ§on Ã  crÃ©e l'illusion de l'infini
     if (leJoueur.getPos().posX+32 >= niveauX + 96) {
         sprite_sol.setPosition(sprite_sol.getPosition().x + 96, sprite_sol.getPosition().y);
         niveauX = niveauX + 96;
@@ -45,8 +45,8 @@ void Sol::afficheSol(RenderWindow& window, Joueur& leJoueur) {
     //angleToPlayer(ObjMove_GetX(bossObj), ObjMove_GetY(bossObj));
     
     //CALCUL MAGIQUE DU CERCLE DE L'INFINIIIIIIII
-    //float calcul = (abs(leJoueur.getPos().posX+(255.0 / 6720.0)*abs(leJoueur.getPos().posX)*cos(leJoueur.anglePoints(0,0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs(leJoueur.getPos().posY + (255.0 / 6720.0) * abs(leJoueur.getPos().posY) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))))/ (6720.0 / 255.0);
-    float calcul = (abs((255.0 / 6720.0) * abs(leJoueur.getPos().posX) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs((255.0 / 6720.0) * abs(leJoueur.getPos().posY) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))));
+    //float calcul = (abs(leJoueur.getPos().posX+(255.0 / 6720.0)*abs(leJoueur.getPos().posX)*cos(leJoueur.anglePoints(0,0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs(leJoueur.getPos().posY + (255.0 / 6720.0) * abs(leJoueur.getPos().posY) * sin(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))))/ (6720.0 / 255.0);
+    float calcul = (abs((255.0 / 6720.0) * abs(leJoueur.getPos().posX) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs((255.0 / 6720.0) * abs(leJoueur.getPos().posY) * sin(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))));
     
     sprite_sol.setColor(Color(255 - calcul, 255 - calcul, 255, 255));
 
