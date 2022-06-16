@@ -1,6 +1,7 @@
 #include "jeu.h"
 
 Jeu::Jeu() {
+    inventaire.accesImages(imageStock);
     /*
 Liste ID materiaux :
 1 - Bois
@@ -38,7 +39,7 @@ bool Jeu::isOpen() {
 
 void Jeu::bouclePrincipale() {
 
-    //fonction qui capte si un bouton est appuyé (avant il y avait un while).
+    //fonction qui capte si un bouton est appuyÃ© (avant il y avait un while).
 
     if (window.pollEvent(event)) {
         input.InputHandler(event, window);
