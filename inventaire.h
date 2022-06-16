@@ -37,6 +37,7 @@ public:
 	//fontion
 	void loadTextureInventaire();
 	void afficheInventaire(RenderWindow& window, int x, int y);
+	void accesImages(Img& images);
 
 private:
 
