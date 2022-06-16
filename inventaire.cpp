@@ -7,7 +7,7 @@ Inventaire::Inventaire() {
 
 //RENDU ICI, FAUT FAIRE UNE FONCTION QUI INITIALISE LA GALERIE D'IMAGE POUR POUVOIR RECUP LES TEXTURES DES MATERIAUX POUR LES OBJ D'INVENTAIRE
 void Inventaire::accesImages(Img& images) {
-    
+    imgStock = images;
 }
 
 //Fonctions
