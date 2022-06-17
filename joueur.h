@@ -18,7 +18,7 @@ class Joueur {
 	//recupere les actions du joueur (shift pour aller plus vite)
 	Input inputPerso;
 	Mouse laSouris;
-	Inventaire inventaire;
+	Inventaire *inventaire;
 
 
 	//structure utilisée dans Perso.cpp
@@ -36,6 +36,11 @@ class Joueur {
 	Clock timeDeplacementPerso;
 	Clock timeAnimationPerso;
 
+	Texture texture_boite;
+	Texture texture_chargement;
+	Sprite sprite_boite;
+	Sprite sprite_chargement;
+
 	//Caractéristiques du personnage
 	bool updateFPS;
 	int vitesse;
@@ -47,7 +52,7 @@ class Joueur {
 	//Fonction public
 public:
 	//Proto du contructeur
-	Joueur(int x, int y, Inventaire& inventaireDuJoueur);
+	Joueur(int x, int y, Inventaire* inventaireDuJoueur);
 
 	//Setter
 	void setInput(Input input);

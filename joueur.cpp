@@ -1,7 +1,7 @@
 #include "joueur.h"
 
 //Constructeur perso 
-Joueur::Joueur(int x, int y, Inventaire& inventaireDuJoueur) {
+Joueur::Joueur(int x, int y, Inventaire* inventaireDuJoueur) {
     //attribut la position du joueur à sa génération
     setPosX(x);
     setPosY(y);
@@ -49,6 +49,20 @@ void Joueur::loadTexturePerso()
     }
     else {
         sprite_joueur.setTexture(texture_joueur);
+    }
+    if (!texture_boite.loadFromFile("res/img/chargement1.png")) {
+        cout << "erreur" << endl;
+    }
+    else {
+
+        sprite_boite.setTexture(texture_boite);
+    }
+    if (!texture_chargement.loadFromFile("res/img/chargement2.png")) {
+        cout << "erreur" << endl;
+    }
+    else {
+
+        sprite_chargement.setTexture(texture_chargement);
     }
 
 }
@@ -145,7 +159,6 @@ void Joueur::controlePerso(RenderWindow& window, vector<Materiaux>& listeDesMate
     vitesseDeplacementPerso(vitesse, listeDesMateriaux);
     
     animationPerso(0);
-    cout << inventaire.idMateriaux.size() << endl;
     window.draw(sprite_joueur);
 }
 
@@ -153,12 +166,33 @@ void Joueur::ramasseMateriaux(RenderWindow& window, vector<Materiaux>& listeDesM
     
     int positionSourisX = laSouris.getPosition().x + getPos().posX - window.getPosition().x-450;
     int positionSourisY = laSouris.getPosition().y + getPos().posY - window.getPosition().y - 475;
+
+    
+
     for (int i = 0; i < listeDesMateriaux.size(); i++) {
         if (listeDesMateriaux.at(i).getSprite().getPosition().x <= getPos().posX + 80 && listeDesMateriaux.at(i).getSprite().getPosition().x >= getPos().posX-28 && listeDesMateriaux.at(i).getSprite().getPosition().y <= getPos().posY + 75 && listeDesMateriaux.at(i).getSprite().getPosition().y >= getPos().posY-28) {
             if (listeDesMateriaux.at(i).getSprite().getGlobalBounds().contains(positionSourisX, positionSourisY)) {
+           
+                sprite_boite.setPosition(getPos().posX, getPos().posY - 32);
+                window.draw(sprite_boite);
+
+                sprite_chargement.setPosition(getPos().posX, getPos().posY - 32);
+                sprite_chargement.setTextureRect(IntRect(0, 0, 48* ramassage / listeDesMateriaux.at(i).solidite, 24));
+                window.draw(sprite_chargement);
+
                 ramassage++;
                 if (ramassage >= listeDesMateriaux.at(i).solidite) {
-                    inventaire.idMateriaux.push_back(listeDesMateriaux.at(i).idMateriaux);
+                    bool dejaPresent = false;
+                    for (int j = 0; j < inventaire->idMateriaux.size(); j++) {
+                        if (inventaire->idMateriaux.at(j) == listeDesMateriaux.at(i).idMateriaux) {
+                            inventaire->quantite.at(j)++;
+                            dejaPresent = true;
+                        }
+                    }
+                    if (!dejaPresent) {
+                        inventaire->idMateriaux.push_back(listeDesMateriaux.at(i).idMateriaux);
+                        inventaire->quantite.push_back(1);
+                    }
                     listeDesMateriaux.erase(listeDesMateriaux.begin() +  i);
                     ramassage = 0;
                 }

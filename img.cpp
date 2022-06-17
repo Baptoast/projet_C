@@ -22,3 +22,15 @@ void Img::loadTextures() {
     if (!fleur3.loadFromFile("res/img/materiaux/fleur3.png")) {}
     
 }
+
+Texture* Img::getImageByID(int id) {
+    switch (id)
+    {
+    case 1: return &bois;
+    case 2: return &pierre;
+    case 3: return &fleur1;
+    case 4: return &fleur2;
+    case 5: return &fleur3;
+    }
+    return &bois;
+}

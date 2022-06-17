@@ -48,7 +48,7 @@ void Sol::afficheSol(RenderWindow& window, Joueur& leJoueur) {
     //float calcul = (abs(leJoueur.getPos().posX+(255.0 / 6720.0)*abs(leJoueur.getPos().posX)*cos(leJoueur.anglePoints(0,0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs(leJoueur.getPos().posY + (255.0 / 6720.0) * abs(leJoueur.getPos().posY) * sin(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))))/ (6720.0 / 255.0);
     float calcul = (abs((255.0 / 6720.0) * abs(leJoueur.getPos().posX) * cos(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))) + abs((255.0 / 6720.0) * abs(leJoueur.getPos().posY) * sin(leJoueur.anglePoints(0, 0, leJoueur.getPos().posX, leJoueur.getPos().posY))));
     
-    sprite_sol.setColor(Color(255 - calcul, 255 - calcul, 255, 255));
+    sprite_sol.setColor(Color(255 - calcul/2, 255 - calcul/2, 255 - calcul/3, 255));
 
     window.draw(sprite_sol);
 }

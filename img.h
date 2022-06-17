@@ -25,7 +25,7 @@ public:
 	//Proto du contructeur
 	Img();
 	void loadTextures();
-	
+	Texture* getImageByID(int id);
 
 
 

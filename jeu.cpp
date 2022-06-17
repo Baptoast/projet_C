@@ -1,7 +1,6 @@
 #include "jeu.h"
 
 Jeu::Jeu() {
-    inventaire.accesImages(imageStock);
     /*
 Liste ID materiaux :
 1 - Bois
@@ -10,11 +9,18 @@ Liste ID materiaux :
 4 - Fleur2
 5 - Fleur3
 */
+    inventaire.initialiseListeMateriaux(&listeDeMateriaux);
+
     listeDeMateriaux.push_back(Materiaux(100, 100, &imageStock.pierre,2));
     listeDeMateriaux.push_back(Materiaux(200, 150, &imageStock.fleur2,4));
+    listeDeMateriaux.push_back(Materiaux(300, 250, &imageStock.fleur2, 4));
+    listeDeMateriaux.push_back(Materiaux(100, 350, &imageStock.fleur2, 4));
     listeDeMateriaux.push_back(Materiaux(-50, -150, &imageStock.fleur3, 5));
+    listeDeMateriaux.push_back(Materiaux(-150, 50, &imageStock.bois, 1));
+    listeDeMateriaux.push_back(Materiaux(0, 200, &imageStock.fleur1, 3));
+    listeDeMateriaux.push_back(Materiaux(-200, 150, &imageStock.fleur1, 3));
 
-    Joueur leJoueurPrincipal = Joueur(0,0, inventaire);
+    Joueur leJoueurPrincipal = Joueur(0,0, &inventaire);
     listeDeJoueur.push_back(leJoueurPrincipal);
     listeDeJoueur.at(0).loadTexturePerso();
 
@@ -53,8 +59,10 @@ void Jeu::bouclePrincipale() {
     for (int i = 0; i < listeDeMateriaux.size(); i++) {
         listeDeMateriaux.at(i).afficheMateriaux(window);
     }
+
     //Affiche inventaire
     inventaire.afficheInventaire(window, listeDeJoueur.at(0).getPos().posX, listeDeJoueur.at(0).getPos().posY);
+
     //Joueur et vue
     listeDeJoueur.at(0).controlePerso(window,listeDeMateriaux);
     vue.setCenter(listeDeJoueur.at(0).getPos().posX+32, listeDeJoueur.at(0).getPos().posY + 32);
