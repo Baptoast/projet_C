@@ -22,10 +22,11 @@ class Joueur {
 
 
 	//structure utilisée dans Perso.cpp
-	struct Pos { int posX, posY; };
+	struct Pos { float posX, posY; };
 
 	//Texture du personnage (image dans un dossier)
 	Texture texture_joueur;
+	Texture texture_joueur_slave;
 	//Sprite du personnage (apparence du personnage en jeu)
 	Sprite sprite_joueur;
 	//Liste des directions où peut regarder notre personnage
@@ -48,16 +49,27 @@ class Joueur {
 	float positionYSourisVue;
 
 	int ramassage = 0;
+	bool estPossede = false;
+	int compteurPossession = 0;
+	float effet = 0.0;
+	bool reverseEffet = false;
+
+	bool effetTotemSpeed = false;
+	bool effetTotemRecupSpeed = false;
+	
 
 	//Fonction public
 public:
+	
+	bool dansTableCraft = false;
+
 	//Proto du contructeur
-	Joueur(int x, int y, Inventaire* inventaireDuJoueur);
+	Joueur(float x, float y, Inventaire* inventaireDuJoueur);
 
 	//Setter
 	void setInput(Input input);
-	void setPosX(int x);
-	void setPosY(int y);
+	void setPosX(float x);
+	void setPosY(float y);
 
 	//Getter
 	Pos getPos(void) const;
@@ -65,13 +77,17 @@ public:
 
 	//fontion
 	void loadTexturePerso();
-	void deplacementPerso(vector<Materiaux>& listeDesMateriaux);
-	void ramasseMateriaux(RenderWindow& window, vector<Materiaux>& listeDesMateriaux);
+	void deplacementPerso(vector<Materiaux*>& listeDesMateriaux);
+	void ramasseMateriaux(RenderWindow& window, vector<Materiaux*>& listeDesMateriaux, vector<Materiaux*>& listeDesMateriauxPoubelle);
+	void consultationMateriaux(RenderWindow& window, vector<Materiaux*>& listeDesMateriaux);
 	void animationPerso(int y);
-	void vitesseDeplacementPerso(int vitesse, vector<Materiaux>& listeDesMateriaux);
-	void controlePerso(RenderWindow& window, vector<Materiaux>& listeDesMateriaux);
+	void vitesseDeplacementPerso(int vitesse, vector<Materiaux*>& listeDesMateriaux);
+	void controlePerso(RenderWindow& window, vector<Materiaux*>& listeDesMateriaux, vector<Materiaux*>& listeDesMateriauxPoubelle);
 	float anglePoints(int x1, int y1, int x2, int y2);
 	float anglePointsDegree(int x1, int y1, int x2, int y2);
+	bool dansChampDeVision(int xObj, int yObj);
+	void changementApparence(int num);
+	void deplacementPersoPossede();
 
 
 

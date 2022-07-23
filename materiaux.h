@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "input.h"
+#include "img.h"
 #include <vector>
 
 
@@ -22,9 +23,11 @@ public:
 	int posY;
 	int solidite;
 	int idMateriaux;
+	int resistantmax = -1;
+	int resistant = -1;
 
 	//Proto du contructeur
-	Materiaux(int x, int y, Texture* texture, int id);
+	Materiaux(int x, int y, Texture* texture, int id, float rotation);
 	void afficheMateriaux(RenderWindow& window);
 
 	Sprite getSprite();

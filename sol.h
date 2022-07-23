@@ -16,8 +16,11 @@ class Sol {
 
 
 	Texture texture_sol;
+	Texture texture_sol2;
+	Texture texture_sol3;
 
 	Sprite sprite_sol;
+	Sprite sprite_sol2;
 
 	int niveauX = 0;
 	int niveauY = 0;

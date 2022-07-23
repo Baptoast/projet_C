@@ -161,6 +161,7 @@
     <ClInclude Include="materiaux.h" />
     <ClInclude Include="pnj.h" />
     <ClInclude Include="sol.h" />
+    <ClInclude Include="table_craft.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="brume.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="materiaux.cpp" />
     <ClCompile Include="pnj.cpp" />
     <ClCompile Include="sol.cpp" />
+    <ClCompile Include="table_craft.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

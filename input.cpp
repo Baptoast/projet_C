@@ -12,6 +12,7 @@ Input::Button Input::GetButton(void) const
 //Fonction
 //gestion des inputs
 void Input::InputHandler(Event event, RenderWindow& window) {
+    resetButtonMollette();
     if (event.type == Event::Closed) {
         window.close();
     }
@@ -103,6 +104,16 @@ void Input::InputHandler(Event event, RenderWindow& window) {
     if (event.type == Event::MouseButtonReleased) {
         if (event.key.code == Mouse::Left) {
             button.clicG = false;
+        }
+    }
+    if (event.type == Event::MouseButtonPressed) {
+        if (event.key.code == Mouse::Right) {
+            button.clicD = true;
+        }
+    }
+    if (event.type == Event::MouseButtonReleased) {
+        if (event.key.code == Mouse::Right) {
+            button.clicD = false;
         }
     }
     if (event.type == Event::MouseWheelMoved) {
