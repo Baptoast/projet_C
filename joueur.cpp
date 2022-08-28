@@ -11,6 +11,8 @@ Joueur::Joueur(float x, float y, Inventaire* inventaireDuJoueur) {
     updateFPS = true;
 
     inventaire = inventaireDuJoueur;
+    pvmax = 100;
+    pv = 80;
 }
 
 //Getter
@@ -65,6 +67,16 @@ void Joueur::loadTexturePerso()
         sprite_chargement.setTexture(texture_chargement);
     }
     texture_joueur_slave.loadFromFile("res/img/perso1posses.png");
+    Texture texture_pv;
+    if (!texture_pv.loadFromFile("res/img/pv_monstre.png")) {
+        cout << "erreur" << endl;
+    }
+    else {
+        sprite_pv.setTexture(texture_pv);
+        sprite_pv.setColor(Color(0, 255, 0));
+        sprite_pvmax.setTexture(texture_pv);
+        sprite_pvmax.setColor(Color(255, 0, 0));
+    }
 }
 
 void Joueur::changementApparence(int num) {
@@ -282,6 +294,13 @@ void Joueur::controlePerso(RenderWindow& window, vector<Materiaux*>& listeDesMat
     vitesseDeplacementPerso(vitesse, listeDesMateriaux);
     
     window.draw(sprite_joueur);
+
+    sprite_pvmax.setPosition(sprite_joueur.getPosition().x-2, sprite_joueur.getPosition().y - 10);
+    sprite_pv.setPosition(sprite_joueur.getPosition().x-2, sprite_joueur.getPosition().y - 10);
+    sprite_pv.setTextureRect(IntRect(0, 0, pv * 48 / 100, 3));
+
+    window.draw(sprite_pvmax);
+    window.draw(sprite_pv);
 }
 
 void Joueur::consultationMateriaux(RenderWindow& window, vector<Materiaux *>& listeDesMateriaux) {

@@ -53,6 +53,19 @@ void Img::loadTextures() {
     if (!note.loadFromFile("res/img/materiaux/feuilles.png")) {}
     //A partir de l'id 500 c'est les mobs
     if (!espritVengeur.loadFromFile("res/img/pnj/monster1.png")) {}
+    //A partir de l'id 1000 c'est les animations
+    if (!eau.loadFromFile("res/img/animation/Eau.png")) {}
+    if (!feu.loadFromFile("res/img/animation/Feu.png")) {}
+    if (!terre.loadFromFile("res/img/animation/Terre.png")) {}
+    if (!metal.loadFromFile("res/img/animation/Metal.png")) {}
+    if (!plante.loadFromFile("res/img/animation/Plante.png")) {}
+    if (!electricite.loadFromFile("res/img/animation/Electricite.png")) {}
+    if (!air.loadFromFile("res/img/animation/Air.png")) {}
+    if (!tenebre.loadFromFile("res/img/animation/Tenebre.png")) {}
+    if (!lumiere.loadFromFile("res/img/animation/Lumiere.png")) {}
+    if (!espace.loadFromFile("res/img/animation/Espace.png")) {}
+    if (!temps.loadFromFile("res/img/animation/Temps.png")) {}
+    if (!poison.loadFromFile("res/img/animation/Poison.png")) {}
 }
 
 /*
@@ -103,6 +116,18 @@ Texture* Img::getImageByID(int id) {
     case 19: return &totem3;
     case 20: return &pelle;
     case 21: return &note;
+    case 1001: return &eau;
+    case 1002: return &feu;
+    case 1003: return &terre;
+    case 1004: return &metal;
+    case 1005: return &plante;
+    case 1006: return &electricite;
+    case 1007: return &air;
+    case 1008: return &tenebre;
+    case 1009: return &lumiere;
+    case 1010: return &espace;
+    case 1011: return &temps;
+    case 1012: return &poison;
     }
     return &bois;
 }

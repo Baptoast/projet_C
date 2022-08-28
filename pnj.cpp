@@ -14,16 +14,24 @@ Pnj::Pnj(int x, int y, Texture* texture, int id) {
     sprite_pnj.setOrigin(24, 24);
     sprite_pnj.setPosition(x, y);
     sprite_pnj.setTextureRect(IntRect(0,0,48,48));
+    loadTexturePnj();
+
+    pv = 100;
+    pvmax = 100;
 }
 
 //Permet de telecharger la texture du perso dans le dossier res
 void Pnj::loadTexturePnj()
 {
-    if (!texture_pnj.loadFromFile("res/img/pnj/monster1.png")) {
+    Texture texture_pv;
+    if (!texture_pv.loadFromFile("res/img/pv_monstre.png")) {
         cout << "erreur" << endl;
     }
     else {
-        sprite_pnj.setTexture(texture_pnj);
+        sprite_pv.setTexture(texture_pv);
+        sprite_pv.setColor(Color(0,255,0));
+        sprite_pvmax.setTexture(texture_pv);
+        sprite_pvmax.setColor(Color(255, 0, 0));
     }
 
 }
@@ -75,6 +83,13 @@ void Pnj::deplacementPnj(RenderWindow& window,Joueur& leJoueur) {
     sprite_pnj.setPosition(sprite_pnj.getPosition().x + 0.815*cos(anglePoints(sprite_pnj.getPosition().x, sprite_pnj.getPosition().y, nouvelleDirectionX, nouvelleDirectionY)), sprite_pnj.getPosition().y + 0.815 * sin(anglePoints(sprite_pnj.getPosition().x, sprite_pnj.getPosition().y, nouvelleDirectionX, nouvelleDirectionY)));
 
     window.draw(sprite_pnj);
+
+    sprite_pvmax.setPosition(sprite_pnj.getPosition().x-26, sprite_pnj.getPosition().y-40);
+    sprite_pv.setPosition(sprite_pnj.getPosition().x - 26, sprite_pnj.getPosition().y - 40);
+    sprite_pv.setTextureRect(IntRect(0,0,pv*48/100,3));
+
+    window.draw(sprite_pvmax);
+    window.draw(sprite_pv);
 }
 
 //gives the angle from point one to point two

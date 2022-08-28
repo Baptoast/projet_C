@@ -20,9 +20,10 @@ class Pnj {
 	struct Pos { int posX, posY; };
 
 	//Texture du personnage (image dans un dossier)
-	Texture texture_pnj;
 	//Sprite du personnage (apparence du personnage en jeu)
-	Sprite sprite_pnj;
+	
+	Sprite sprite_pv;
+	Sprite sprite_pvmax;
 	//Liste des directions où peut regarder notre personnage
 	enum Dir { Down, Left, Right, Up };
 	//(x, y) x = colonne d'animation (de 1 à 3) et y = ligne d'animation (choix de la liste juste au dessus)
@@ -44,11 +45,16 @@ class Pnj {
 	float positionYSourisVue;
 
 	int ramassage = 0;
+
+	int pvmax;
+	
 	
 
 
 	//Fonction public
 public:
+	Sprite sprite_pnj;
+	int pv;
 	bool estDead = false;
 	//Proto du contructeur
 	Pnj();

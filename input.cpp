@@ -52,6 +52,24 @@ void Input::InputHandler(Event event, RenderWindow& window) {
         case Keyboard::I:
             button.inventaire = true;
             break;
+        case Keyboard::Num1:
+            button.n1 = true;
+            break;
+        case Keyboard::Num2:
+            button.n2 = true;
+            break;
+        case Keyboard::Num3:
+            button.n3 = true;
+            break;
+        case Keyboard::Num4:
+            button.n4 = true;
+            break;
+        case Keyboard::Num5:
+            button.n5 = true;
+            break;
+        case Keyboard::Num6:
+            button.n6 = true;
+            break;
         default:
             break;
         }
@@ -91,6 +109,24 @@ void Input::InputHandler(Event event, RenderWindow& window) {
             break;
         case Keyboard::I:
             button.inventaire = false;
+            break;
+        case Keyboard::Num1:
+            button.n1 = false;
+            break;
+        case Keyboard::Num2:
+            button.n2 = false;
+            break;
+        case Keyboard::Num3:
+            button.n3 = false;
+            break;
+        case Keyboard::Num4:
+            button.n4 = false;
+            break;
+        case Keyboard::Num5:
+            button.n5 = false;
+            break;
+        case Keyboard::Num6:
+            button.n6 = false;
             break;
         default:
             break;

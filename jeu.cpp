@@ -21,16 +21,64 @@ Jeu::Jeu() {
     
 
     inventaire.initialiseListeMateriaux(&listeDeMateriaux, &listeDeMateriauxJoueur,&listeDeMateriauxPoubelle, &tableCraft);
-    laBrume.initialiseListeMateriaux(&listeDeMateriaux);
 
     Joueur leJoueurPrincipal = Joueur(0,64, &inventaire);
     listeDeJoueur.push_back(leJoueurPrincipal);
     listeDeJoueur.at(0).loadTexturePerso();
 
+    //Degats - et soin + des sorts
+    //1
+    degatsSorts.push_back(-20);
+    degatsSorts.push_back(-20);
+    //2
+    degatsSorts.push_back(-20);
+    degatsSorts.push_back(-20);
+    //3
+    degatsSorts.push_back(-20);
+    degatsSorts.push_back(-20);
+    //4
+    degatsSorts.push_back(-20);
+    degatsSorts.push_back(-20);
+    //5
+    degatsSorts.push_back(-20);
+    degatsSorts.push_back(-20);
+    //6
+    degatsSorts.push_back(20);
+    degatsSorts.push_back(20);
 
 }
 
-void Jeu::creationJeu() {
+
+void Jeu::communicationServeur(Socket::Status* status) {
+    
+    socket.connect("192.168.1.27", 53000);
+
+    char data[100];
+    std::size_t received;
+
+    while (isOpen()) {
+        //Envoie
+        sprintf_s(data, "%.0f:%.0f:", listeDeJoueur.at(0).getPos().posX, listeDeJoueur.at(0).getPos().posY);
+        if (socket.send(data, 100) != Socket::Done) {}
+    }
+    
+}
+
+void Jeu::communicationServeurReception(Socket::Status* status) {
+
+    char data[100];
+    std::size_t received;
+    
+    /*
+    while (isOpen()) {
+        //Envoie
+        if (socket.receive(data, 100, received) != Socket::Done) {}
+        cout << data << endl;
+    }*/
+
+}
+
+void Jeu::creationJeu(vector<int>* elemJoueur) {
     window.create(VideoMode(SCREEN_SIZE_WEIGHT, SCREEN_SIZE_HEIGHT), "La Brume");
 
     window.setPosition(Vector2i((ecran.getDesktopMode().width / 2) - (ecran.getDesktopMode().width / 5), ecran.getDesktopMode().height / 64));
@@ -40,6 +88,10 @@ void Jeu::creationJeu() {
     window.requestFocus();
     //window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(120);
+
+    listeDeJoueur.at(0).elements[0] = elemJoueur->at(0);
+    listeDeJoueur.at(0).elements[1] = elemJoueur->at(1);
+    listeDeJoueur.at(0).elements[2] = elemJoueur->at(2);
    
 }
 
@@ -375,6 +427,45 @@ void Jeu::bouclePrincipale() {
             listeDeMateriauxJoueur.at(i)->afficheMateriaux(window);
     }
 
+    //Les sorts
+    if (input.GetButton().n1 && sort1cd.getElapsedTime().asSeconds() > 4 && !sortAppuie) {
+        sortEnJeu.push_back(Sort(listeDeJoueur.at(0).elements[0], listeDeJoueur.at(0).elements[1], &listeDeJoueur.at(0), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[0]), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[1]), degatsSorts.at(0), degatsSorts.at(1),&listeDePnj));
+        sort1cd.restart();
+        sortAppuie = true;
+    }
+    if (input.GetButton().n2 && sort2cd.getElapsedTime().asSeconds() > 4 && !sortAppuie) {
+        sortEnJeu.push_back(Sort(listeDeJoueur.at(0).elements[0], listeDeJoueur.at(0).elements[2], &listeDeJoueur.at(0), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[0]), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[2]), degatsSorts.at(2), degatsSorts.at(3), &listeDePnj));
+        sort2cd.restart();
+        sortAppuie = true;
+    }
+    if (input.GetButton().n3 && sort3cd.getElapsedTime().asSeconds() > 4 && !sortAppuie) {
+        sortEnJeu.push_back(Sort(listeDeJoueur.at(0).elements[1], listeDeJoueur.at(0).elements[0], &listeDeJoueur.at(0), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[1]), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[0]), degatsSorts.at(4), degatsSorts.at(5), &listeDePnj));
+        sort3cd.restart();
+        sortAppuie = true;
+    }
+    if (input.GetButton().n4 && sort4cd.getElapsedTime().asSeconds() > 4 && !sortAppuie) {
+        sortEnJeu.push_back(Sort(listeDeJoueur.at(0).elements[1], listeDeJoueur.at(0).elements[2], &listeDeJoueur.at(0), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[1]), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[2]), degatsSorts.at(6), degatsSorts.at(7), &listeDePnj));
+        sort4cd.restart();
+        sortAppuie = true;
+    }
+    if (input.GetButton().n5 && sort5cd.getElapsedTime().asSeconds() > 4 && !sortAppuie) {
+        sortEnJeu.push_back(Sort(listeDeJoueur.at(0).elements[2], listeDeJoueur.at(0).elements[0], &listeDeJoueur.at(0), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[2]), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[0]), degatsSorts.at(8), degatsSorts.at(9), &listeDePnj));
+        sort5cd.restart();
+        sortAppuie = true;
+    }
+    if (input.GetButton().n6 && sort6cd.getElapsedTime().asSeconds() > 4 && !sortAppuie) {
+        sortEnJeu.push_back(Sort(listeDeJoueur.at(0).elements[2], listeDeJoueur.at(0).elements[1], &listeDeJoueur.at(0), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[2]), imageStock.getImageByID(1000 + listeDeJoueur.at(0).elements[1]), degatsSorts.at(10), degatsSorts.at(11), &listeDePnj));
+        sort6cd.restart();
+        sortAppuie = true;
+    }
+    if (!input.GetButton().n1 && !input.GetButton().n2 && !input.GetButton().n3 && !input.GetButton().n4 && !input.GetButton().n5 && !input.GetButton().n6) {
+        sortAppuie = false;
+    }
+
+    for (int i = 0; i < sortEnJeu.size(); i++) {
+        sortEnJeu.at(i).afficheSort(window);
+    }
+
     //Les monstres
     
     vector<int> compteDead;
@@ -405,8 +496,6 @@ void Jeu::bouclePrincipale() {
     listeDeJoueur.at(0).controlePerso(window, listeDeMateriauxJoueur, listeDeMateriauxPoubelle);
     vue.setCenter(listeDeJoueur.at(0).getPos().posX+32, listeDeJoueur.at(0).getPos().posY + 32);
 
-    //La brume
-    laBrume.afficheBrume(window, listeDeJoueur.at(0).getPos().posX, listeDeJoueur.at(0).getPos().posY);
     
     
 

@@ -29,6 +29,8 @@ class Joueur {
 	Texture texture_joueur_slave;
 	//Sprite du personnage (apparence du personnage en jeu)
 	Sprite sprite_joueur;
+	Sprite sprite_pv;
+	Sprite sprite_pvmax;
 	//Liste des directions où peut regarder notre personnage
 	enum Dir { Down, Left, Right, Up };
 	//(x, y) x = colonne d'animation (de 1 à 3) et y = ligne d'animation (choix de la liste juste au dessus)
@@ -56,12 +58,33 @@ class Joueur {
 
 	bool effetTotemSpeed = false;
 	bool effetTotemRecupSpeed = false;
+
+	int pvmax;
+
+	//PARTIE PROJET C
+
+	/* Liste elements :
+	1 - Eau
+	2 - Feu
+	3 - Terre
+	4 - Metal
+	5 - Plante
+	6 - Electricité
+	7 - Air
+	8 - Ténèbre
+	9 - Lumière
+	10 - Espace
+	11 - Temps
+	12 - Poison
+	*/
+	
 	
 
 	//Fonction public
 public:
-	
+	int elements[3];
 	bool dansTableCraft = false;
+	int pv;
 
 	//Proto du contructeur
 	Joueur(float x, float y, Inventaire* inventaireDuJoueur);

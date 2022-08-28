@@ -33,9 +33,6 @@
     <ClInclude Include="joueur.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="brume.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="pnj.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -49,6 +46,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="table_craft.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="sort.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,9 +74,6 @@
     <ClCompile Include="joueur.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="brume.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="pnj.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -87,6 +87,12 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="table_craft.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sort.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

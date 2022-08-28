@@ -42,6 +42,20 @@ public:
 	//Texture monsters
 	Texture espritVengeur;
 
+	//Texture animations
+	Texture eau;
+	Texture feu;
+	Texture terre;
+	Texture metal;
+	Texture plante;
+	Texture electricite;
+	Texture air;
+	Texture tenebre;
+	Texture lumiere;
+	Texture espace;
+	Texture temps;
+	Texture poison;
+
 	//Proto du contructeur
 	Img();
 	void loadTextures();

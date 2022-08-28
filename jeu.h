@@ -4,6 +4,7 @@
 #include <iostream>
 #include "input.h"
 #include "sol.h"
+#include "sort.h"
 #include "img.h"
 #include "pnj.h"
 #include "joueur.h"
@@ -11,9 +12,9 @@
 #include "hud.h"
 #include "inventaire.h"
 #include "table_craft.h"
-#include "brume.h"
 #include <vector>
 #include <SFML/Network.hpp>
+#include <windows.h>
 
 
 //Constantes du Programme
@@ -29,6 +30,8 @@ class Jeu {
 	Clock clk;
 	Clock tempsRafraichissementMateriaux;
 	Mouse laSouris;
+
+	TcpSocket socket;
 
 	RenderWindow window;
 
@@ -97,7 +100,17 @@ class Jeu {
 	Img imageStock;
 	Inventaire inventaire;
 	TableCraft tableCraft;
-	Brume laBrume;
+
+	vector<Sort> sortEnJeu;
+	bool sortAppuie = false;
+	//A remplacer par couldown
+	Clock sort1cd;
+	Clock sort2cd;
+	Clock sort3cd;
+	Clock sort4cd;
+	Clock sort5cd;
+	Clock sort6cd;
+	vector<int> degatsSorts;
 	
 
 public:
@@ -110,9 +123,11 @@ public:
 	//setter
 
 	//fonction
-	void creationJeu();
+	void creationJeu(vector<int>* elemJoueur);
 	void bouclePrincipale();
 	bool isOpen();
+	void communicationServeur(Socket::Status* status);
+	void communicationServeurReception(Socket::Status* status);
 
 	void generationAleatoireMateriaux(int numcase);
 

@@ -90,6 +90,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\kagum\source\repos\projet_B\include;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\Users\kagum\source\repos\projet_B\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>C:\Users\kagum\source\repos\projet_B\lib;$(LibraryPath)</LibraryPath>
+    <PublicIncludeDirectories>C:\Users\kagum\source\repos\projet_B\include;$(PublicIncludeDirectories)</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,10 +151,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;sfml-main.lib;sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="brume.h" />
     <ClInclude Include="hud.h" />
     <ClInclude Include="img.h" />
     <ClInclude Include="input.h" />
@@ -159,12 +163,13 @@
     <ClInclude Include="joueur.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="materiaux.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="pnj.h" />
     <ClInclude Include="sol.h" />
+    <ClInclude Include="sort.h" />
     <ClInclude Include="table_craft.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="brume.cpp" />
     <ClCompile Include="hud.cpp" />
     <ClCompile Include="img.cpp" />
     <ClCompile Include="input.cpp" />
@@ -173,8 +178,10 @@
     <ClCompile Include="joueur.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="materiaux.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="pnj.cpp" />
     <ClCompile Include="sol.cpp" />
+    <ClCompile Include="sort.cpp" />
     <ClCompile Include="table_craft.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

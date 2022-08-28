@@ -9,7 +9,7 @@ using namespace sf;
 
 
 class Input {
-	struct Button { bool left, right, up, down, attack, escape, shift, clicG, clicD, moletteH, molletteB, inventaire; };
+	struct Button { bool left, right, up, down, attack, escape, shift, clicG, clicD, moletteH, molletteB, inventaire, n1, n2 , n3, n4, n5, n6; };
 	
 
 public:
